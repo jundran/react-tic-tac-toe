@@ -43,7 +43,7 @@ module.exports = {
 			favicon: './src/assets/favicon-32x32.png'
 		}),
 		new DefinePlugin({
-			// Remove annoying console message about React browser extension
+			// Remove console message about React browser extension
 			'__REACT_DEVTOOLS_GLOBAL_HOOK__': '({ isDisabled: true })'
 		})
 	]

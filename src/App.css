@@ -1,3 +1,19 @@
-.App {
+body {
+	margin: 0;
+}
+
+#root {
 	font-family: sans-serif;
+	background: #111;
+	color: #fff;
+	min-height: 100vh;
+}
+
+.App {
+	color: green;
+}
+
+h1 {
+	margin: 0;
+	padding: 10% 25%;
 }
