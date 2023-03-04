@@ -48,6 +48,7 @@ export function Board ({ xIsNext, squares, onPlay }) {
 export default function Game () {
 	const [history, setHistory] = useState([Array(9).fill(null)])
 	const [currentMove, setCurrentMove] = useState(0)
+	const [sortAscending, setSortAscending] = useState(true)
 	const currentSquares = history[currentMove]
 
 	function handlePlay (nextSquares) {
@@ -56,27 +57,32 @@ export default function Game () {
 		setCurrentMove(nextHistory.length - 1)
 	}
 
-	function jumpTo (nextMove) {
-		setCurrentMove(nextMove)
-	}
-
 	return (
 		<div className='board'>
 			<div className='game-board'>
 				<Board xIsNext={currentMove % 2 === 0} squares={currentSquares} onPlay={handlePlay} />
 			</div>
 			<div className='game-info'>
-				<ol>
+				<div className='move-order'>
+					<span>Sort: </span>
+					<button onClick={() => setSortAscending(!sortAscending)}>
+						{sortAscending ? 'Ascending' : 'Descending'}
+					</button>
+				</div>
+				<ul>
 					{
-						history.map((squares, move) =>
-							<li key={move}>
-								<button onClick={() => jumpTo(move)}>
-									{move > 0 ? `Go to move # ${move}` : 'Go to game start'}
-								</button>
-							</li>
-						)
+						history.map((squares, index) => {
+							const move = sortAscending ? index : history.length - 1 - index
+							return (
+								<li key={move}>
+									<button onClick={() => setCurrentMove(move)}>
+										{move > 0 ? `Go to move # ${move}` : 'Go to game start'}
+									</button>
+								</li>
+							)
+						})
 					}
-				</ol>
+				</ul>
 			</div>
 		</div>
 	)

@@ -45,7 +45,7 @@ module.exports = {
 		}),
 		new DefinePlugin({
 			// Disable devtools to remove console message about React browser extension
-			// '__REACT_DEVTOOLS_GLOBAL_HOOK__': '({ isDisabled: true })'
+			'__REACT_DEVTOOLS_GLOBAL_HOOK__': '({ isDisabled: true })'
 		})
 	]
 }
