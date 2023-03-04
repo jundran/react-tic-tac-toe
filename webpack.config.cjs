@@ -13,6 +13,7 @@ module.exports = {
 		port: 5000,
 		static: path.resolve('src', 'assets')
 	},
+	devtool: 'inline-source-map',
 	// Import modules without file extension
 	resolve: { extensions: ['.js', '.jsx'] },
 	module: {
@@ -43,8 +44,8 @@ module.exports = {
 			favicon: './src/assets/favicon-32x32.png'
 		}),
 		new DefinePlugin({
-			// Remove console message about React browser extension
-			'__REACT_DEVTOOLS_GLOBAL_HOOK__': '({ isDisabled: true })'
+			// Disable devtools to remove console message about React browser extension
+			// '__REACT_DEVTOOLS_GLOBAL_HOOK__': '({ isDisabled: true })'
 		})
 	]
 }

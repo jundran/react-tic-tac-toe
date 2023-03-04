@@ -49,12 +49,13 @@ module.exports = {
 			'error',
 			'always'
 		],
-		'comma-dangle':
-		[
+		'comma-dangle': [
 			'error',
 			'never'
 		],
 		'no-trailing-spaces': 'error',
-		'no-unused-vars': 'warn'
+		'no-unused-vars': 'warn',
+		// React
+		'react/prop-types': 0
 	}
 }
