@@ -1,9 +1,12 @@
 import React, { useState } from 'react'
 import './styles/App.css'
 
-function Square ({ value, onSquareClick }) {
+function Square ({ value, onSquareClick, winner }) {
 	return (
-		<button className="square" onClick={onSquareClick}>
+		<button
+			className={winner ? 'square winner' : 'square'}
+			onClick={onSquareClick}
+		>
 			{value}
 		</button>
 	)
@@ -17,12 +20,16 @@ export function Board ({ xIsNext, squares, onPlay }) {
 		onPlay(nextSquares)
 	}
 
-	const winner = calculateWinner(squares)
+	const winStatus = calculateWinner(squares)
 	let status
-	if (winner) {
-		status = `Winner: ${winner}`
-	} else {
-		status = `Next player: ${xIsNext ? 'X' : 'O'}`
+	let winningSquares = []
+	if (winStatus) {
+		winningSquares = winStatus.line
+		status = `Winner: ${winStatus.winner}`
+	} else if (winStatus === false) {
+		status = 'The game is a draw'
+	} else { // winStatus is null
+		status =`Next player: ${xIsNext ? 'X' : 'O'}`
 	}
 
 	// [0, 3, 6] done programatically
@@ -32,11 +39,12 @@ export function Board ({ xIsNext, squares, onPlay }) {
 			<div className='status'>{status}</div>
 			{outer.map(row =>
 				<div key={row} className="board-row">
-					{[...Array(3).keys()].map(square =>
+					{[...Array(3).keys()].map(col =>
 						<Square
-							key={row + square}
-							value={squares[row + square]}
-							onSquareClick={() => handleClick(row + square)}
+							key={row + col}
+							value={squares[row + col]}
+							onSquareClick={() => handleClick(row + col)}
+							winner={winningSquares.includes(row + col)}
 						/>
 					)}
 				</div>
@@ -102,8 +110,12 @@ function calculateWinner (squares) {
 	for (const line of lines) {
 		const [a, b, c] = line
 		if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-			return squares[a]
+			return {
+				winner: squares[a],
+				line
+			}
 		}
 	}
+	if (!squares.includes(null)) return false // draw
 	return null
 }

@@ -12,7 +12,7 @@ ul {
 .game {
   display: flex;
   flex-direction: row;
-	gap: 20%;
+	gap: 10%;
 }
 
 .status {
@@ -21,6 +21,10 @@ ul {
 
 .move-order {
   margin-bottom: 15px;
+}
+
+.game-board {
+	min-width: 150px;
 }
 
 .board-row:after {
@@ -42,4 +46,8 @@ ul {
   padding: 0;
   text-align: center;
   width: 34px;
+}
+
+.square.winner {
+	background: green;
 }
