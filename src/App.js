@@ -65,6 +65,15 @@ export default function Game () {
 		setCurrentMove(nextHistory.length - 1)
 	}
 
+	function getLastPlayedSquareIndex (historyIndex) {
+		const lastSquares =  historyIndex > 0 ? history[historyIndex - 1] : null
+		const currentSquares = history[historyIndex]
+		for (let i = 0; i < currentSquares.length; i++) {
+			const last = lastSquares && lastSquares[i]
+			if (currentSquares[i] && !last) return i
+		}
+	}
+
 	return (
 		<div className='game'>
 			<div className='game-board'>
@@ -81,10 +90,13 @@ export default function Game () {
 					{
 						history.map((squares, index) => {
 							const move = sortAscending ? index : history.length - 1 - index
+							const lastPlayedSquareIndex = getLastPlayedSquareIndex(move)
+							const row = Math.floor(lastPlayedSquareIndex / 3)
+							const col = lastPlayedSquareIndex % 3
 							return (
 								<li key={move}>
 									<button onClick={() => setCurrentMove(move)}>
-										{move > 0 ? `Go to move # ${move}` : 'Go to game start'}
+										{move > 0 ? `Go to move # ${move} [${row+1}, ${col+1}]` : 'Go to game start'}
 									</button>
 								</li>
 							)
