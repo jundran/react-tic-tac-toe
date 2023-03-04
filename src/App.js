@@ -58,7 +58,7 @@ export default function Game () {
 	}
 
 	return (
-		<div className='board'>
+		<div className='game'>
 			<div className='game-board'>
 				<Board xIsNext={currentMove % 2 === 0} squares={currentSquares} onPlay={handlePlay} />
 			</div>
