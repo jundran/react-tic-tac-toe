@@ -7,7 +7,7 @@ document.title = 'Tic Tac Toe'
 
 createRoot(document.getElementById('root'))
 	.render(
-		// <StrictMode>
+		<StrictMode>
 			<App tab="home" />
-		// </StrictMode>
+		</StrictMode>
 	)
