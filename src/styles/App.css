@@ -9,6 +9,14 @@ ul {
 	list-style: none;
 }
 
+li {
+	line-height: 2;
+}
+
+button {
+	cursor: pointer;
+}
+
 .game {
   display: flex;
   flex-direction: row;

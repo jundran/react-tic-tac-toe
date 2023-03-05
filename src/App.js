@@ -93,11 +93,23 @@ export default function Game () {
 							const lastPlayedSquareIndex = getLastPlayedSquareIndex(move)
 							const row = Math.floor(lastPlayedSquareIndex / 3)
 							const col = lastPlayedSquareIndex % 3
+							console.log(currentMove, move)
 							return (
 								<li key={move}>
-									<button onClick={() => setCurrentMove(move)}>
-										{move > 0 ? `Go to move # ${move} [${row+1}, ${col+1}]` : 'Go to game start'}
-									</button>
+									{
+										currentMove !== move ?
+											(
+												<button onClick={() => setCurrentMove(move)}>
+													{move > 0 ? `Go to move # ${move} [${row+1}, ${col+1}]` : 'Go to game start'}
+												</button>
+											)
+											:
+											(
+												<span>
+													{move > 0 ? `You are at move # ${move} [${row+1}, ${col+1}]` : 'You are at game start'}
+												</span>
+											)
+									}
 								</li>
 							)
 						})
