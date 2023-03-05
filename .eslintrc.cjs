@@ -6,8 +6,8 @@ module.exports = {
 	},
 	'extends': [
 		'eslint:recommended',
-		'plugin:react/recommended'
-		// 'plugin:react-hooks/recommended' not installed
+		'plugin:react/recommended',
+		'plugin:react-hooks/recommended'
 	],
 	'parserOptions': {
 		'ecmaVersion': 'latest',

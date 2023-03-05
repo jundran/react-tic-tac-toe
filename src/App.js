@@ -93,7 +93,6 @@ export default function Game () {
 							const lastPlayedSquareIndex = getLastPlayedSquareIndex(move)
 							const row = Math.floor(lastPlayedSquareIndex / 3)
 							const col = lastPlayedSquareIndex % 3
-							console.log(currentMove, move)
 							return (
 								<li key={move}>
 									{
