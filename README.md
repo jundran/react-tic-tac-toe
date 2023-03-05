@@ -1,5 +1,8 @@
 # react-tic-tac-toe
 
+## Live
+https://jundran.github.io/react-tic-tac-toe/
+
 ## Description
 React Tic Tac Toe tutorial with all challenges solved.
 
